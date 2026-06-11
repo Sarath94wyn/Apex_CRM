@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+
 const Userdata = () => {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,7 +42,7 @@ const Userdata = () => {
   const fetchCustomers = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/customers', getAuthHeader());
+      const res = await axios.get(`${apiBaseUrl}/api/customers`, getAuthHeader());
       if (res.data.success) {
         setCustomers(res.data.data);
       }
@@ -120,7 +122,7 @@ const Userdata = () => {
     try {
       if (modalMode === 'add') {
         const res = await axios.post(
-          'http://localhost:5000/api/customers',
+          `${apiBaseUrl}/api/customers`,
           customerForm,
           getAuthHeader()
         );
@@ -130,7 +132,7 @@ const Userdata = () => {
         }
       } else {
         const res = await axios.put(
-          `http://localhost:5000/api/customers/${selectedCustomerId}`,
+          `${apiBaseUrl}/api/customers/${selectedCustomerId}`,
           customerForm,
           getAuthHeader()
         );
@@ -157,7 +159,7 @@ const Userdata = () => {
 
     try {
       const res = await axios.delete(
-        `http://localhost:5000/api/customers/${id}`,
+        `${apiBaseUrl}/api/customers/${id}`,
         getAuthHeader()
       );
       if (res.data.success) {

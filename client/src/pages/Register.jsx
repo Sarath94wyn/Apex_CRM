@@ -53,7 +53,8 @@ const Register = ({ setUser }) => {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/users/register', {
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const res = await axios.post(`${apiBaseUrl}/api/users/register`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,

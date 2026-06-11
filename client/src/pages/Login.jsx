@@ -37,7 +37,8 @@ const Login = ({ setUser }) => {
 
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/users/login', formData);
+      const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+      const res = await axios.post(`${apiBaseUrl}/api/users/login`, formData);
 
       if (res.data.success) {
         localStorage.setItem('crm_token', res.data.data.token);
