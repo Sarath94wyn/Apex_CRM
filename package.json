@@ -1,0 +1,11 @@
+{
+  "name": "mern-crm-project",
+  "version": "1.0.0",
+  "description": "MERN Stack CRM Application",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "install-all": "npm install --prefix server && npm install --prefix client",
+    "start": "npm start --prefix server"
+  }
+}
